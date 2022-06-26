@@ -1,3 +1,5 @@
+# Getting Started
+
 ## So far, we get:
 
 - Automatic compilation and [bundling](https://nextjs.org/docs/advanced-features/compiler)
