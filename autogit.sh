@@ -1,5 +1,5 @@
 git add -A
-git commit -m "Docs -> Pages -> Server-side Rendering"
+git commit -m "Docs -> Pages -> Data Fetching"
 git push
 git status
 exit

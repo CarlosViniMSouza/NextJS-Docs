@@ -8,16 +8,6 @@ NOTE: We are introducing improved routing support in Next.js. Look up [layouts-r
 
 In Next.js, a **page** is a [React Component](https://reactjs.org/docs/components-and-props.html) exported from a `.js`, `.jsx`, `.ts`, or `.tsx` file in the pages directory. Each page is associated with a route based on its file name.
 
-**Example:** If you create `pages/about.js` that exports a React component like below, it will be accessible at `/about`.
-
-```js
-function About() {
-  return <div>About</div>
-}
-
-export default About
-```
-
 ## Pages with Dynamic Routes
 
 Next.js supports pages with dynamic routes. For example, if you create a file called `pages/posts/[id].js`, then it will be accessible at `posts/1`, `posts/2`, etc.
@@ -36,8 +26,6 @@ Next.js has two forms of pre-rendering: **Static Generation** and **Server-side 
 
 - [Server-side Rendering](https://nextjs.org/docs/basic-features/pages#server-side-rendering): The HTML is generated on **each request**.
 
-Importantly, Next.js lets you choose which pre-rendering form you'd like to use for each page. You can create a "hybrid" Next.js app by using Static Generation for most pages and using Server-side Rendering for others.
-
 **We recommend using Static Generation** over Server-side Rendering for performance reasons. Statically generated pages can be cached by CDN with no extra configuration to boost performance. However, in some cases, Server-side Rendering might be the only option.
 
 You can also use Client-side Rendering along with Static Generation or Server-side Rendering. That means some parts of a page can be rendered entirely by client side JavaScript. To learn more, take a look at the [Data Fetching](https://nextjs.org/docs/basic-features/data-fetching/client-side) documentation.
@@ -52,10 +40,38 @@ To learn more about how `getStaticProps` works, check out the [Data Fetching doc
 
 You can use Static Generation for many types of pages, including:
 
-- Marketing pages
+1 - Marketing pages
 
-- Blog posts and portfolios
+2 - Blog posts and portfolios
 
-- E-commerce product listings
+3 - E-commerce product listings
 
-- Help and documentation
+4 - Help and documentation
+
+## Server-side Rendering
+
+```
+Also referred to as "SSR" or "Dynamic Rendering".
+```
+
+If a page uses **Server-side Rendering**, the page HTML is generated on **each request**.
+
+To use Server-side Rendering for a page, you need to `export` an `async` function called `getServerSideProps`. This function will be called by the server on every request.
+
+## Summary
+
+We've discussed two forms of pre-rendering for Next.js.
+
+- **Static Generation (Recommended):** The HTML is generated at build time and will be reused on each request. To make a page use Static Generation, either export the page component, or export `getStaticProps` (and `getStaticPaths` if necessary). It's great for pages that can be pre-rendered ahead of a user's request. You can also use it with Client-side Rendering to bring in additional data.
+
+- **Server-side Rendering:** The HTML is generated on **each request.** To make a page use Server-side Rendering, export `getServerSideProps`. Because Server-side Rendering results in slower performance than Static Generation, use this only if absolutely necessary.
+
+## Learn more
+
+[Data Fetching](https://nextjs.org/docs/basic-features/data-fetching/overview)
+
+[Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode)
+
+[Routing](https://nextjs.org/docs/routing/introduction)
+
+[TypeScript](https://nextjs.org/docs/basic-features/typescript#pages)
