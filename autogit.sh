@@ -1,5 +1,5 @@
 git add -A
-git commit -m "Docs -> Pages -> Scenario 2: Your page paths depend on external data"
+git commit -m "Docs -> Pages -> Server-side Rendering"
 git push
 git status
 exit
