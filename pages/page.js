@@ -3,13 +3,24 @@ function Page({ data }) {
 }
 
 // This gets called on every request
-export async function getServerSideProps() {
+export async function getServerSideProps({ req, res }) {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
 
-  // Fetch data from external API
-  const res = await fetch(`https://localhost:3000/data`)
-  const data = await res.json()
+  return {
+    props: {},
+  }
+}
 
-  return { props: { data } }
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: {} }
+    ],
+    fallback: true
+  }
 }
 
 export default Page
